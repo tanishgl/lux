@@ -1,0 +1,48 @@
+.game-board {
+  width: fit-content;
+  padding: 8px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  background-color: honeydew;
+  border-radius: 4px;
+  position: relative;
+}
+
+.game-over {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 22.5rem;
+  height: 22.5rem;
+  background-color: rgba(255, 0, 0, 0.55);
+  font-size: 3rem;
+  z-index: 1;
+  animation: gameover 1s ease-in-out 2s 1 forwards;
+  gap: 1rem;
+}
+
+.btn-new-game {
+  padding: 3px 6px;
+  font-size: 22px;
+  background-color: slategray;
+  color: #fff;
+  border: 1px solid whitesmoke;
+  border-radius: 3px;
+}
+
+@keyframes gameover {
+  0% {
+    display: none;
+  }
+
+  80% {
+    transform: scale(0.95);
+  }
+
+  100% {
+    display: flex;
+    transform: scale(1);
+  }
+}

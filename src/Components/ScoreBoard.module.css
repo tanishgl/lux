@@ -1,0 +1,40 @@
+.scoreboard {
+  padding-top: 1rem;
+  gap: 1rem;
+}
+
+.scorecard {
+  width: fit-content;
+  height: 0;
+  padding: 2px;
+  background-color: #444;
+  gap: 2px;
+}
+
+.card {
+  font-size: 20px;
+  background-color: #000;
+  color: aliceblue;
+  width: fit-content;
+  padding: 2px;
+}
+
+.new-game {
+  padding: 3px 5px;
+  border-radius: 4px;
+  background-color: azure;
+  color: crimson;
+  border: 1px solid crimson;
+  margin-top: -20px;
+  margin-left: 20px;
+}
+
+.flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.flex-c {
+  flex-direction: column;
+}

@@ -1,0 +1,63 @@
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@500&family=Raleway:wght@600&display=swap");
+
+:root {
+  --side: 5rem;
+}
+
+.tile {
+  font-size: 2rem;
+  width: var(--side);
+  height: var(--side);
+  background-color: blanchedalmond;
+  color: #333;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Outfit";
+}
+
+.new-tile {
+  animation: pop-up 100ms ease-out 0s 1 forwards;
+}
+
+@keyframes pop-up {
+  0% {
+    transform: scale(0.4);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+.tile-2 {
+  background-color: beige;
+}
+
+.tile-4 {
+  background-color: burlywood;
+}
+
+.tile-8 {
+  background-color: goldenrod;
+}
+
+.tile-16 {
+  background-color: lightskyblue;
+}
+
+.tile-32 {
+  background-color: rosybrown;
+}
+
+.tile-64 {
+  background-color: royalblue;
+}
+
+.tile-128 {
+  background-color: aquamarine;
+}
+
+.tile-256 {
+  background-color: salmon;
+}
