@@ -2,7 +2,7 @@
   "name": "lux",
   "private": true,
   "version": "0.0.0",
-  "homepage": "https://tanishgl.github.io/2048",
+  "homepage": "https://tanishgl.github.io/lux",
   "type": "module",
   "scripts": {
     "predeploy": "npm run build",
