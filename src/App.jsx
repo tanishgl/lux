@@ -9,7 +9,6 @@ function App() {
     <>
       <ScoreBoard />
       <GameBoard classname="app-board" />
-      {status === "over" && <p>Game Over</p>}
     </>
   );
 }

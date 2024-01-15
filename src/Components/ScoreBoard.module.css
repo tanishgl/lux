@@ -12,11 +12,14 @@
 }
 
 .card {
-  font-size: 20px;
+  font-size: 28px;
   background-color: #000;
-  color: aliceblue;
   width: fit-content;
   padding: 2px;
+}
+
+.card-label::first-letter {
+  text-transform: uppercase;
 }
 
 .new-game {
@@ -37,4 +40,19 @@
 
 .flex-c {
   flex-direction: column;
+}
+
+.gap-8 {
+  gap: 8px;
+}
+
+.score,
+.moves {
+  color: whitesmoke;
+}
+
+.best,
+.best-moves {
+  color: blue;
+  background-color: #ddd;
 }

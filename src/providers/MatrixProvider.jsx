@@ -10,6 +10,8 @@ const initialState = {
   board: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   totalScore: 0,
   bestScore: 0,
+  totalMoves: 0,
+  bestScoreMoves: 0,
   newTile: 0,
 };
 
@@ -24,18 +26,29 @@ function getRandomInArray(arr) {
 function reducer(state, action) {
   switch (action.type) {
     case "game/start":
-      return { ...state, status: "run", board: action.payload, totalScore: 0 };
+      return {
+        ...state,
+        status: "run",
+        board: action.payload,
+        totalScore: 0,
+        totalMoves: 0,
+      };
     case "game/next":
       return {
         ...state,
         board: action.payload.boardN,
         totalScore: state.totalScore + action.payload.score,
+        totalMoves: state.totalMoves + 1,
       };
     case "game/over":
       return {
         ...state,
         status: "over",
         bestScore: Math.max(state.bestScore, state.totalScore),
+        bestScoreMoves:
+          state.totalScore > state.bestScore
+            ? state.totalMoves
+            : state.bestScoreMoves,
       };
     case "tile/new":
       return { ...state, newTile: action.payload };
@@ -45,8 +58,18 @@ function reducer(state, action) {
 }
 
 export function MatrixProvider({ children }) {
-  const [{ status, board, totalScore, bestScore, newTile }, dispatch] =
-    useReducer(reducer, initialState);
+  const [
+    {
+      status,
+      board,
+      totalScore,
+      bestScore,
+      newTile,
+      totalMoves,
+      bestScoreMoves,
+    },
+    dispatch,
+  ] = useReducer(reducer, initialState);
 
   useEffect(function () {
     startNewGame();
@@ -61,18 +84,15 @@ export function MatrixProvider({ children }) {
 
   useEffect(
     function () {
-      console.log("board changed");
       /* If the board is not completely filled, return. */
       if (board.filter((val) => val === 0).length !== 0) return;
-      console.log("board freeze");
-      /* Check if there are any matching pairs left. */
+      /* Check if there are any matching pairs left. Comparing current box with left box (if present) and up box (if present) */
       for (let r = 0; r < 4; r++) {
         for (let c = 0; c < 4; c++) {
           if (c - 1 >= 0 && board[r * 4 + c] === board[r * 4 + (c - 1)]) return;
           if (r - 1 >= 0 && board[r * 4 + c] === board[(r - 1) * 4 + c]) return;
         }
       }
-      console.log("game over");
       /* Reaching here means that there are no pairs left. */
       dispatch({ type: "game/over" });
     },
@@ -128,7 +148,6 @@ export function MatrixProvider({ children }) {
       boardN[generateNew2(boardN)] = 2;
     }
     /* Dispatching 'game/next' action... */
-    console.log(score);
     dispatch({
       type: "game/next",
       payload: {
@@ -277,7 +296,16 @@ export function MatrixProvider({ children }) {
 
   return (
     <MatrixContext.Provider
-      value={{ status, board, totalScore, bestScore, startNewGame, newTile }}
+      value={{
+        status,
+        board,
+        totalScore,
+        bestScore,
+        startNewGame,
+        newTile,
+        totalMoves,
+        bestScoreMoves,
+      }}
     >
       {children}
     </MatrixContext.Provider>

@@ -2,12 +2,15 @@ import useMatrixProvider from "../providers/MatrixProvider";
 import styles from "./ScoreBoard.module.css";
 
 function ScoreBoard() {
-  const { totalScore, bestScore, startNewGame } = useMatrixProvider();
+  const { totalScore, bestScore, startNewGame, totalMoves, bestScoreMoves } =
+    useMatrixProvider();
 
   return (
     <header className={`${styles.flex} ${styles.scoreboard}`}>
-      <ScoreCard total={totalScore} label={"Total"} />
-      <ScoreCard total={bestScore} label={"Best"} />
+      <ScoreCard total={totalScore} label={"score"} />
+      <ScoreCard total={totalMoves} label={"moves"} />
+      <ScoreCard total={bestScore} label={"best"} />
+      <ScoreCard total={bestScoreMoves} label={"best moves"} />
       <button className={styles["new-game"]} onClick={startNewGame}>
         New Game{" "}
       </button>
@@ -17,15 +20,20 @@ function ScoreBoard() {
 
 function ScoreCard({ total, label }) {
   return (
-    <div className={`${styles.flex} ${styles["flex-c"]}`}>
+    <div className={`${styles.flex} ${styles["flex-c"]} ${styles["gap-8"]}`}>
       <div className={`${styles.flex} ${styles.scorecard}`}>
         {Array.from(total.toString()).map((val, idx) => (
-          <p key={idx} className={`${styles.card} ${styles.flex}`}>
+          <p
+            key={idx}
+            className={`${styles.card} ${styles.flex} ${
+              styles[label.split(" ").join("-")]
+            }`}
+          >
             {val}
           </p>
         ))}
       </div>
-      <p>{label}</p>
+      <p className={`${styles["card-label"]}`}>{label}</p>
     </div>
   );
 }
