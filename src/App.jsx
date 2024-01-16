@@ -1,14 +1,15 @@
 import GameBoard from "./Components/GameBoard";
-import useMatrixProvider from "./providers/MatrixProvider";
 import "./App.css";
 import ScoreBoard from "./Components/ScoreBoard";
+import { TouchProvider } from "./providers/TouchProvider";
 
 function App() {
-  const { status } = useMatrixProvider();
   return (
     <>
       <ScoreBoard />
-      <GameBoard classname="app-board" />
+      <TouchProvider>
+        <GameBoard classname="app-board" />
+      </TouchProvider>
     </>
   );
 }

@@ -2,11 +2,15 @@ import useMatrixProvider from "../providers/MatrixProvider";
 import styles from "./GameBoard.module.css";
 import Tile from "./Tile";
 import "../index.css";
+import useTouchProvider from "../providers/TouchProvider";
 
 function GameBoard() {
   const { status, startNewGame } = useMatrixProvider();
+  const { handleTouchStart, handleTouchEnd } = useTouchProvider();
   return (
     <div
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
       className={`${styles["game-board"]} ${
         status === "over" ? styles.over : ""
       }`}

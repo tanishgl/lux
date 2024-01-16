@@ -305,6 +305,10 @@ export function MatrixProvider({ children }) {
         newTile,
         totalMoves,
         bestScoreMoves,
+        handlePressRight,
+        handlePressLeft,
+        handlePressDown,
+        handlePressUp,
       }}
     >
       {children}
