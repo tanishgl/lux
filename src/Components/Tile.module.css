@@ -1,11 +1,25 @@
 @import url("https://fonts.googleapis.com/css2?family=Outfit:wght@500&family=Raleway:wght@600&display=swap");
 
-:root {
-  --side: 5rem;
+@media screen and (max-width: 1400px) {
+  :root {
+    --side: 5rem;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  :root {
+    --side: 3rem;
+  }
+}
+
+@media screen and (max-width: 295px) {
+  :root {
+    --side: 1.8rem;
+  }
 }
 
 .tile {
-  font-size: 2rem;
+  font-size: calc(var(--side) / 2);
   width: var(--side);
   height: var(--side);
   background-color: blanchedalmond;
@@ -29,6 +43,8 @@
     transform: scale(1);
   }
 }
+
+/* Tile-<power-of-2> colors */
 
 .tile-2 {
   background-color: beige;
@@ -60,4 +76,16 @@
 
 .tile-256 {
   background-color: salmon;
+}
+
+.tile-512 {
+  background-color: orange;
+}
+
+.tile-1024 {
+  background-color: darkcyan;
+}
+
+.tile-2048 {
+  background-color: cadetblue;
 }

@@ -1,6 +1,34 @@
-.scoreboard {
-  padding-top: 1rem;
-  gap: 1rem;
+@media screen and (max-width: 1400px) {
+  .scoreboard {
+    padding-top: 1rem;
+    gap: 1rem;
+  }
+
+  .card {
+    font-size: 28px;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .scoreboard {
+    padding-top: 8px;
+    gap: 8px;
+  }
+
+  .card {
+    font-size: 20px;
+  }
+}
+
+@media screen and (max-width: 295px) {
+  .scoreboard {
+    padding-top: 8px;
+    gap: 2px;
+  }
+
+  .card {
+    font-size: 16px;
+  }
 }
 
 .scorecard {
@@ -12,7 +40,6 @@
 }
 
 .card {
-  font-size: 28px;
   background-color: #000;
   width: fit-content;
   padding: 2px;

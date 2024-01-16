@@ -23,6 +23,7 @@ export function TouchProvider({ children }) {
   );
 
   function handleTouchStart(e) {
+    console.log("touch start");
     setTouchBegin({
       x: e.changedTouches[0].clientX,
       y: e.changedTouches[0].clientY,
@@ -30,6 +31,7 @@ export function TouchProvider({ children }) {
   }
 
   function handleTouchEnd(e) {
+    console.log("touch end");
     setTouchEnd({
       x: e.changedTouches[0].clientX,
       y: e.changedTouches[0].clientY,
