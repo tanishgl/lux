@@ -1,5 +1,24 @@
-@media screen and (min-width: 1200px) {
+@media screen and (max-width: 1200px) {
   .app-board {
     margin-left: 10rem;
   }
+
+  .grid-app {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+.grid-app {
+  display: grid;
+  justify-items: center;
+  gap: 12px;
+}
+
+.new-game {
+  width: fit-content;
+  padding: 3px 5px;
+  border-radius: 4px;
+  background-color: azure;
+  color: crimson;
+  border: 1px solid crimson;
 }
