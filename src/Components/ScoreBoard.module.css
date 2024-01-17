@@ -32,6 +32,10 @@
   }
 }
 
+.scoreboard {
+  font-family: "Inconsolata";
+}
+
 .scorecard {
   gap: 1px;
 }
