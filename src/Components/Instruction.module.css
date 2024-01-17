@@ -1,0 +1,26 @@
+.instruction {
+  width: 20rem;
+  /* height: fit-content; */
+  font-size: 14px;
+  /* text-align: center; */
+}
+
+.up,
+.down {
+  color: green;
+  font-weight: 600;
+  letter-spacing: 1;
+  font-size: 1rem;
+}
+
+.left,
+.right {
+  color: orangered;
+  font-weight: 600;
+  letter-spacing: 1;
+  font-size: 1rem;
+}
+
+.power-of-2 {
+  color: rgb(228, 13, 85);
+}

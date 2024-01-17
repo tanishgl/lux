@@ -3,6 +3,7 @@ import "./App.css";
 import ScoreBoard from "./Components/ScoreBoard";
 import { TouchProvider } from "./providers/TouchProvider";
 import useMatrixProvider from "./providers/MatrixProvider";
+import Instruction from "./Components/Instruction";
 
 function App() {
   const { startNewGame } = useMatrixProvider();
@@ -15,6 +16,7 @@ function App() {
       <TouchProvider>
         <GameBoard classname="app-board" />
       </TouchProvider>
+      <Instruction />
     </div>
   );
 }
