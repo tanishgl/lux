@@ -1,0 +1,15 @@
+.logout-btn {
+  width: fit-content;
+  height: fit-content;
+  border: none;
+  background-color: transparent;
+}
+
+.logout-btn:hover {
+  outline: 1px solid #aaa;
+}
+
+.logout-btn img {
+  width: 24px;
+  height: 24px;
+}

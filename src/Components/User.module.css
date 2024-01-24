@@ -1,0 +1,7 @@
+.user {
+  padding: 2px 0;
+}
+
+.user:hover {
+  outline: 1px dotted #aaa;
+}

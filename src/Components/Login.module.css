@@ -1,0 +1,12 @@
+.google-login-btn {
+  width: fit-content;
+  height: fit-content;
+  padding: 0;
+  background-color: transparent;
+  border: none;
+}
+
+.google-login-btn:hover {
+  outline: 1px dotted #aaa;
+  cursor: pointer;
+}
