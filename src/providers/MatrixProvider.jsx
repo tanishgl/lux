@@ -52,6 +52,12 @@ function reducer(state, action) {
       };
     case "tile/new":
       return { ...state, newTile: action.payload };
+    case "game/login":
+      return {
+        ...state,
+        bestScore: action.payload.bestScore,
+        bestScoreMoves: action.payload.bestScoreMoves,
+      };
     default:
       throw new Error("action unknown");
   }
@@ -98,6 +104,10 @@ export function MatrixProvider({ children }) {
     },
     [board]
   );
+
+  function initBest(bestScore, bestScoreMoves) {
+    dispatch({ type: "game/login", payload: { bestScore, bestScoreMoves } });
+  }
 
   function startNewGame() {
     let box_1 = getRandom(0, 15);
@@ -309,6 +319,7 @@ export function MatrixProvider({ children }) {
         handlePressLeft,
         handlePressDown,
         handlePressUp,
+        initBest,
       }}
     >
       {children}
