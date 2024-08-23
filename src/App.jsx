@@ -1,24 +1,27 @@
-import GameBoard from "./Components/GameBoard";
 import "./App.css";
-import Header from "./Components/Header";
-import { TouchProvider } from "./providers/TouchProvider";
-import useMatrixProvider from "./providers/MatrixProvider";
-import Instruction from "./Components/Instruction";
+import { RouterProvider, createHashRouter } from "react-router-dom";
+import AppLayout from "./UI/AppLayout";
+import Account from "./Components/Account";
+import GamePage from "./UI/GamePage";
+
+const router = createHashRouter([
+  {
+    element: <AppLayout />,
+    children: [
+      {
+        path: "/",
+        element: <GamePage />,
+      },
+      {
+        path: "account",
+        element: <Account />,
+      },
+    ],
+  },
+]);
 
 function App() {
-  const { startNewGame } = useMatrixProvider();
-  return (
-    <div className="grid-app">
-      <Header />
-      <button className={"new-game"} onClick={startNewGame}>
-        New Game
-      </button>
-      <TouchProvider>
-        <GameBoard classname="app-board" />
-      </TouchProvider>
-      <Instruction />
-    </div>
-  );
+  return <RouterProvider router={router} />;
 }
 
 export default App;

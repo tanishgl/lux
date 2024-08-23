@@ -6,7 +6,7 @@ function Logout() {
   return (
     <div>
       <button className={`${styles["logout-btn"]}`} onClick={logout}>
-        <img src="logout.png" />
+        <img src="/lux/public/logout.png" />
       </button>
     </div>
   );

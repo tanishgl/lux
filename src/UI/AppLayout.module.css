@@ -1,0 +1,11 @@
+@media screen and (max-width: 1200px) {
+  .grid-app {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+.grid-app {
+  display: grid;
+  justify-items: center;
+  gap: 12px;
+}

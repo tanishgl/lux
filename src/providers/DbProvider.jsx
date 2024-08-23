@@ -11,6 +11,7 @@ import useAuth from "./AuthProvider";
 import useMatrixProvider from "./MatrixProvider";
 import {
   FIND_PLAYER_BY_EMAIL,
+  GET_TOP_10_PLAYERS,
   PLAYERS_COL_REF,
 } from "../Constants/DbConstants";
 
@@ -20,6 +21,7 @@ export function DbProvider({ children }) {
   const [docId, setDocId] = useState("");
   const [player, setPlayer] = useState({});
   const [isNewUser, setIsNewUser] = useState(true);
+  const [topPlayers, setTopPlayers] = useState([]);
   const { username, email, isLoggedIn } = useAuth();
   const {
     status,
@@ -45,40 +47,55 @@ export function DbProvider({ children }) {
       if (isLoggedIn && isGameOver) {
         addGame();
       }
-      async function addGame() {
-        const GAME_COL_REF = collection(db, "players", docId, "games");
-        try {
-          let isNewRecordSet = totalScore > player.bestScore;
-          if (isNewRecordSet) {
-            const player_doc = await updateDoc(doc(db, "players", docId), {
-              bestScore: totalScore,
-              bestScoreMoves: totalMoves,
-            });
-            const updated_player = {
-              ...player,
-              bestScore: totalScore,
-              bestScoreMoves: totalMoves,
-            };
-            setPlayer(updated_player);
-          }
-          const game_stats = {
-            bestScore,
-            bestScoreMoves,
-            totalScore,
-            totalMoves,
-            playedAt: new Date().toISOString(),
-          };
-          const game_ref = await addDoc(GAME_COL_REF, game_stats);
-          console.log(
-            `New game with player id = ${docId} game id = ${game_ref.id} added.`
-          );
-        } catch (e) {
-          console.error(e);
-        }
-      }
     },
     [docId, status]
   );
+
+  async function getTopPlayers() {
+    try {
+      const top_players = await getDocs(GET_TOP_10_PLAYERS);
+      let playersData = [];
+      top_players.forEach((top_player) => {
+        let { username, bestScore } = top_player.data();
+        playersData.push({ username, bestScore });
+      });
+      setTopPlayers(playersData);
+    } catch (exception) {
+      console.log(exception);
+    }
+  }
+
+  async function addGame() {
+    const GAME_COL_REF = collection(db, "players", docId, "games");
+    try {
+      let isNewRecordSet = totalScore > player.bestScore;
+      if (isNewRecordSet) {
+        const player_doc = await updateDoc(doc(db, "players", docId), {
+          bestScore: totalScore,
+          bestScoreMoves: totalMoves,
+        });
+        const updated_player = {
+          ...player,
+          bestScore: totalScore,
+          bestScoreMoves: totalMoves,
+        };
+        setPlayer(updated_player);
+      }
+      const game_stats = {
+        bestScore,
+        bestScoreMoves,
+        totalScore,
+        totalMoves,
+        playedAt: new Date().toISOString(),
+      };
+      const game_ref = await addDoc(GAME_COL_REF, game_stats);
+      console.log(
+        `New game with player id = ${docId} game id = ${game_ref.id} added.`
+      );
+    } catch (e) {
+      console.error(e);
+    }
+  }
 
   async function getPlayer() {
     try {
@@ -116,13 +133,17 @@ export function DbProvider({ children }) {
     }
   }
 
-  return <dbContext.Provider value={{}}>{children}</dbContext.Provider>;
+  return (
+    <dbContext.Provider value={{ getTopPlayers, topPlayers }}>
+      {children}
+    </dbContext.Provider>
+  );
 }
 
-function useDbContext() {
+function useDbProvider() {
   let db = useContext(dbContext);
   if (db === null) throw new Error("db context is undefined");
   return db;
 }
 
-export default useDbContext;
+export default useDbProvider;

@@ -2,7 +2,7 @@ import styles from "./Instruction.module.css";
 
 function Instruction() {
   return (
-    <div className={`${styles.instruction} flex`}>
+    <div className={`${styles.instruction}`}>
       Press the arrow keys to swipe the tiles{" "}
       <span className={`${styles.up}`}>up</span>,{" "}
       <span className={`${styles.right}`}>right</span>,{" "}

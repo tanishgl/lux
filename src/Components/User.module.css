@@ -1,5 +1,6 @@
 .user {
   padding: 2px 0;
+  text-decoration: none;
 }
 
 .user:hover {

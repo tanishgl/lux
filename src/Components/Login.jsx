@@ -6,7 +6,7 @@ function Login() {
   return (
     <div>
       <button className={`${styles["google-login-btn"]}`} onClick={login}>
-        <img src="google.png" />
+        <img src="/lux/public/google.png" />
       </button>
     </div>
   );
